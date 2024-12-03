@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Videojuego</title>
+</head>
+<body>
+    <h1>{{ videojuego.nombre }}</h1>
+    <p><strong>Plataforma:</strong> {{ videojuego.plataforma }}</p>
+    <p><strong>Género:</strong> {{ videojuego.genero }}</p>
+    <p><strong>Precio:</strong> ${{ videojuego.precio }}</p>
+    <p><strong>Descripción:</strong> {{ videojuego.descripcion }}</p>
+    <p><strong>Fecha de lanzamiento:</strong> {{ videojuego.fecha_lanzamiento }}</p>
+    <img src="{{ videojuego.imagen }}" alt="{{ videojuego.nombre }}">
+</body>
+</html>

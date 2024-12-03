@@ -1,0 +1,102 @@
+<html lang="es">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>
+      Catálogo de Videojuegos
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  </head>
+  <body class="font-roboto bg-gray-100">
+    <header class="bg-blue-900 text-white p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-2xl font-bold">
+          Catálogo de Videojuegos
+        </h1>
+        <nav>
+          <ul class="flex space-x-4">
+            <li>
+              <a class="hover:underline" href="#">
+                Inicio
+              </a>
+            </li>
+            <li>
+              <a class="hover:underline" href="#">
+                Juegos
+              </a>
+            </li>
+            <li>
+              <a class="hover:underline" href="#">
+                Categorías
+              </a>
+            </li>
+            <li>
+              <a class="hover:underline" href="#">
+                Contacto
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="container mx-auto py-8">
+        <section class="mb-8">
+          <h2 class="text-3xl font-bold mb-4">
+            Juegos Populares
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {% for videojuego in juegos_populares %}
+              <div class="bg-white p-4 rounded-lg shadow-md">
+                <img alt="Portada del videojuego {{ videojuego.nombre }}" class="w-full h-48 object-cover rounded-md mb-4" src="{{ videojuego.imagen }}" width="300" height="200"/>
+                <h3 class="text-xl font-bold mb-2">
+                  {{ videojuego.nombre }}
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  {{ videojuego.descripcion }}
+                </p>
+                <a href="{% url 'detalle_videojuego' id=videojuego.id %}" class="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-700">
+                  Ver más
+                </a>
+              </div>
+            {% empty %}
+              <p>No hay juegos populares disponibles.</p>
+            {% endfor %}
+          </div>
+        </section>
+      
+        <section>
+          <h2 class="text-3xl font-bold mb-4">
+            Nuevos Lanzamientos
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {% for juego in nuevos_lanzamientos %}
+              <div class="bg-white p-4 rounded-lg shadow-md">
+                <img alt="Portada de nuevo lanzamiento" class="w-full h-48 object-cover rounded-md mb-4" src="{{ juego.imagen }}" width="300" height="200"/>
+                <h3 class="text-xl font-bold mb-2">
+                  {{ juego.nombre }}
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  {{ juego.descripcion|truncatewords:10 }}
+                </p>
+                <button class="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-700">
+                  Ver más
+                </button>
+              </div>
+            {% empty %}
+              <p>No hay nuevos lanzamientos disponibles.</p>
+            {% endfor %}
+          </div>
+        </section>
+      </main>
+      
+    <footer class="bg-blue-900 text-white p-4 mt-8">
+      <div class="container mx-auto text-center">
+        <p>
+          © 2023 Catálogo de Videojuegos. Todos los derechos reservados.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
